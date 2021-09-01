@@ -21,9 +21,7 @@ yargs.command({
       type: 'string'
     }
   },
-  handler: function (argv) {
-    notes.addNotes(argv.title, argv.body)
-  }
+  handler (argv) { return notes.addNotes(argv.title, argv.body) }
 })
 yargs.command({
   command: 'remove',
@@ -35,21 +33,17 @@ yargs.command({
       type: 'string'
     }
   },
-  handler: function (argv) {
-    notes.removeNotes(argv.title)
-  }
+  handler (argv) { return notes.removeNotes(argv.title) }
 })
 yargs.command({
   command: 'list',
   describe: 'list all notes stored in the file',
-  handler: function (params) {
-    console.log('show list')
-  }
+  handler () { return notes.listNotes() }
 })
 yargs.command({
   command: 'read',
   describe: 'reads the saved notes to the user',
-  handler: function (params) {
+  handler (params) {
     console.log(chalk.blue('reading text to user'))
   }
 })
