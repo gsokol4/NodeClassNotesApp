@@ -5,6 +5,10 @@ const getNotes = () => {
   return 'your notes ...'
 }
 
+const readNotes = () => {
+  console.log('read notes is hooked up properly')
+}
+
 const listNotes = () => {
   const notes = loadNotes()
   console.log(chalk.blue.bold('+++++++++++notes++++++++++++', '\n', '______________________________' , '\n'))
@@ -16,8 +20,8 @@ const listNotes = () => {
 
 const addNotes = (title, body) => {
   const notes = loadNotes()
-  const duplicateNotes = notes.filter((note) => note.title === title)
-  if (duplicateNotes.length === 0) {
+  const duplicateNote = notes.find((note) => note.title === title)
+  if (!duplicateNote) {
     notes.push(
       {
         title: title,
@@ -64,5 +68,6 @@ module.exports = {
   getNotes: getNotes,
   addNotes: addNotes,
   removeNotes: removeNotes,
-  listNotes: listNotes
+  listNotes: listNotes,
+  readNotes: readNotes
 }

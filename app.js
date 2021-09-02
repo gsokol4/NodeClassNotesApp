@@ -43,9 +43,14 @@ yargs.command({
 yargs.command({
   command: 'read',
   describe: 'reads the saved notes to the user',
-  handler (params) {
-    console.log(chalk.blue('reading text to user'))
-  }
+  builder: {
+    title: {
+      describe: 'title of the note to read',
+      demandOption: true,
+      type: 'string'
+    }
+  },
+  handler () { return notes.readNotes()}
 })
 
 yargs.parse()
