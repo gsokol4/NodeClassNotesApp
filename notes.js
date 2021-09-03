@@ -5,13 +5,20 @@ const getNotes = () => {
   return 'your notes ...'
 }
 
-const readNotes = () => {
-  console.log('read notes is hooked up properly')
+const readNotes = (title) => {
+  const notes = loadNotes()
+  const match = notes.find((note) => note.title === title)
+  if (typeof (match) === 'undefined') {
+    console.log('no match found')
+  } else {
+    console.log('\n', '\n', chalk.blue(match.title))
+    console.log(match.body, '\n', '\n')
+  }
 }
 
 const listNotes = () => {
   const notes = loadNotes()
-  console.log(chalk.blue.bold('+++++++++++notes++++++++++++', '\n', '______________________________' , '\n'))
+  console.log(chalk.blue.bold('+++++++++++notes++++++++++++', '\n', '______________________________', '\n'))
   notes.forEach(note => {
     console.log(chalk.blue.bold(note.title))
     console.log(note.body, '\n', '_____________________________________', '\n')
